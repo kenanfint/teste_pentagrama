@@ -27,8 +27,8 @@ DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=(nome_que_desejar_db)
-DB_USERNAME=root
-DB_PASSWORD=root
+DB_USERNAME=(username_que_desejar_db)
+DB_PASSWORD=(senha_que_desejar_db)
 
 CACHE_DRIVER=redis
 QUEUE_CONNECTION=redis
@@ -42,13 +42,13 @@ REDIS_PORT=6379
 
 Suba os containers do projeto
 ```sh
-docker-compose up -d
+docker-compose up -d  # ou docker compose up -d 
 ```
 
 
 Acessar o container
 ```sh
-docker-compose exec app bash
+docker-compose exec app bash  # ou docker compose exec app bash 
 ```
 
 
@@ -63,8 +63,12 @@ Gerar a key do projeto Laravel
 php artisan key:generate
 ```
 
+Adicionar migrations e fazer o seed do banco
+```sh
+php artisan migrate --seed
+```
 
-Acesse o projeto
-[APP_URL=http://localhost:8989](APP_URL=http://localhost:8989)
-# teste_pentagrama
-# teste_pentagrama
+
+Acesse o projeto:
+APP_URL=http://localhost:8989
+
