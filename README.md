@@ -72,3 +72,20 @@ php artisan migrate --seed
 Acesse o projeto:
 APP_URL=http://localhost:8989
 
+
+<h2 id="the_challenge"> 🌋 O teste</h2>
+
+Esta é a solução do teste proposto pela [pentagrama](https://www.pentagrama.com.br/).
+
+Requisitos obrigatórios:
+  - [x] Tela de login;
+  - [x] Tela de cadastro de cidade (nome da cidade, estado e data de fundação);
+  - [x] Tela de cadastro de bairro (apenas nome),associando a uma cidade (se preferir, poderá ser feita em uma única tela os cadastros de cidade e de bairro);
+  - [x] Relatório de cidades e bairro (filtrar por nome da cidade, data da fundação e nome do bairro;
+  - [x] Tela de cadastro de usuário;
+ 
+ <h2 id="author">👨‍🎓 Autor </h2>
+
+- Nome: Kenan Fintelman
+- E-mail: kenanfintelman123@hotmail.com
+
