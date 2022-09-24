@@ -67,3 +67,4 @@ php artisan key:generate
 Acesse o projeto
 [APP_URL=http://localhost:8989](APP_URL=http://localhost:8989)
 # teste_pentagrama
+# teste_pentagrama
