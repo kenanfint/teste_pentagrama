@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\{
+    AddressController,
+    UserController
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [UserController::class, 'index'])->name('users.index');
+
+Route::post('/auth', [UserController::class, 'auth'])->name('users.auth');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/address', [AddressController::class, 'index'])->name('address.index');  
 });
