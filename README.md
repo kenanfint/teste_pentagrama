@@ -3,22 +3,23 @@
 
 
 ### Passo a passo
-Clone Repositório
+Clone o repositório:
 ```sh
 git clone https://github.com/kenan455/teste_pentagrama.git
 ```
 
+Entre no projeto:
 ```sh
 cd teste_pentagrama/
 ```
 
-Crie o Arquivo .env (linux)
+Crie o Arquivo .env (comando do linux):
 ```sh
 cp .env.example .env
 ```
 
 
-Entre no projeto e atualize as variáveis de ambiente do arquivo .env (muito importante)
+Atualize as seguintes variáveis de ambiente do arquivo .env (muito importante)
 ```dosini
 APP_URL=http://localhost:8989
 
@@ -37,36 +38,41 @@ REDIS_HOST=redis
 ```
 
 
-Suba os containers do projeto
+Suba os containers do projeto:
 ```sh
 docker-compose up -d  # ou docker compose up -d 
 ```
 
 
-Acessar o container
+Acessar o container:
 ```sh
 docker-compose exec app bash  # ou docker compose exec app bash 
 ```
 
 
-Instalar as dependências do projeto
+Instalar as dependências do projeto:
 ```sh
 composer install
 ```
 
 
-Gerar a key do projeto Laravel
+Gerar a key do projeto Laravel:
 ```sh
 php artisan key:generate
 ```
 
-Adicionar migrations e fazer o seed do banco
+Adicione migrations no banco:
 ```sh
 php artisan migrate --seed
 ```
 
+Faça o seed do banco:
+```sh
+php artisan db:seed
+```
 
-Acesse o projeto:
+
+Acesse o projeto na url abaixo:
 APP_URL=http://localhost:8989
 
 
