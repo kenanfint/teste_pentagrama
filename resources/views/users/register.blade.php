@@ -60,17 +60,16 @@
                         </div>
                     @endif
 
-                    @if(session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <h3 class="login-heading mb-4">Bem-vindo!</h3>
+                    <h3 class="login-heading mb-4">Crie sua conta!</h3>
       
                     <!-- Sign In Form -->
-                    <form action="{{ route('users.auth') }}" method="post">
+                    <form action="{{ route('users.store') }}" method="post">
                       @csrf
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="username">
+                        <label for="floatingInput">Nome</label>
+                      </div>
+
                       <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
                         <label for="floatingInput">Email</label>
@@ -88,7 +87,7 @@
                       </div>
       
                       <div class="d-grid">
-                        <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Entrar</button>
+                        <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Registrar</button>
                         <div class="text-center">
                           <a class="small" href="/">Esqueceu a senha?</a>
                         </div>
@@ -96,7 +95,7 @@
                     </form>
                     <div class="d-grid pt-5">
                       <div class="text-center">
-                        <a class="small" href="{{ route('users.register') }}">Criar uma conta</a>
+                        <a class="small" href="{{ route('users.index') }}">Fazer login</a>
                       </div>
                     </div>
                   </div>
