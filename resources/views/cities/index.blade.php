@@ -265,7 +265,7 @@
 			<form action="{{ route('cities.filter') }}" class="d-flex justify-content-center pb-2" method="post">
 				@csrf
 				<input type="text" class="form-control w-100" placeholder="Digite o nome da cidade" name="city_name">
-				<input type="date" maxlength="10" class='form-control w-100' name="foundation_date" value="" placeholder="Insira a data">
+				<input type="text" maxlength="10" class='js-date form-control w-100' name="foundation_date" value="" placeholder="Insira a data">
 				<input type="text" class="form-control w-100" placeholder="Digite o nome do bairro" name="district">
 				<button onClick="submit" class="btn btn-primary ml-1">filtrar</button>
 			</form>
@@ -285,8 +285,8 @@
 					<thead>
 						<tr>
 							<th>
-								
-							
+
+
 							</th>
 							<th>Cidade</th>
 							<th>Estado</th>
@@ -298,13 +298,13 @@
 						@foreach ($cities as $city)
 						<tr>
 							<td>
-								
+
 							</td>
 							<td>{{$city->name}}</td>
 							<td>{{$city->state}}</td>
 							<td>{{ date('d/m/Y', strtotime($city->foundation_date)) }}</td>
 							<td>{{$city->district->name}}</td>
-							
+
 						</tr>
 						@endforeach
 
@@ -355,6 +355,34 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		var input = document.querySelectorAll('.js-date')[0];
+
+		var dateInputMask = function dateInputMask(elm) {
+			elm.addEventListener('keypress', function(e) {
+				if (e.keyCode < 47 || e.keyCode > 57) {
+					e.preventDefault();
+				}
+
+				var len = elm.value.length;
+
+				if (len !== 1 || len !== 3) {
+					if (e.keyCode == 47) {
+						e.preventDefault();
+					}
+				}
+				if (len === 2) {
+					elm.value += '/';
+				}
+				if (len === 5) {
+					elm.value += '/';
+				}
+			});
+		};
+
+		dateInputMask(input);
+	</script>
 </body>
 
 </html>

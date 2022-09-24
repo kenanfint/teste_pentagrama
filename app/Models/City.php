@@ -25,19 +25,23 @@ class City extends Model
 
     public function filterAllConditions(Request $request, $data)
     {
+        $formatteDate = $this->dateFormater($request->foundation_date);
+
         $cities = City::where("name", "LIKE", "%{$request->city_name}%")
             ->whereHas('district', function (Builder $query) use ($data) {
                 $query->Where('name', 'LIKE', $data['district'] . "%");
             })
-            ->where("foundation_date", "LIKE", "%{$request->foundation_date}%")->paginate(5);
+            ->where("foundation_date", "LIKE", "%{$formatteDate}%")->paginate(5);
 
         return $cities;
     }
 
-    public function filterByCityAndFoundationDate(Request $request, $data)
+    public function filterByCityAndFoundationDate(Request $request)
     {
+        $formatteDate = $this->dateFormater($request->foundation_date);
+        
         $cities = City::where("name", "LIKE", "%{$request->city_name}%")
-            ->where("foundation_date", "LIKE", "%{$request->foundation_date}%")->paginate(5);
+            ->where("foundation_date", "LIKE", "%{$formatteDate}%")->paginate(5);
 
         return $cities;
     }
@@ -54,7 +58,9 @@ class City extends Model
 
     public function filterByFoundationDateAndDistrict(Request $request, $data)
     {
-        $cities = City::where("foundation_date", "LIKE", "%{$request->foundation_date}%")
+        $formatteDate = $this->dateFormater($request->foundation_date);
+
+        $cities = City::where("foundation_date", "LIKE", "%{$formatteDate}%")
             ->whereHas('district', function (Builder $query) use ($data) {
                 $query->Where('name', 'LIKE', $data['district'] . "%");
             })->paginate(5);
@@ -71,7 +77,8 @@ class City extends Model
 
     public function filterByFoundationDate(Request $request)
     {
-        $cities = City::where("foundation_date", "LIKE", "%{$request->foundation_date}%")->paginate(5);
+        $formatteDate = $this->dateFormater($request->foundation_date);
+        $cities = City::where("foundation_date", "LIKE", "%{$formatteDate}%")->paginate(5);
 
         return $cities;
     }
@@ -83,5 +90,15 @@ class City extends Model
         })->paginate(5);
 
         return $cities;
+    }
+
+    public function dateFormater($date)
+    {
+        $orderdate = explode('/', $date);
+        $day = $orderdate[0];
+        $month   = $orderdate[1];
+        $year  = $orderdate[2];
+
+        return ($year . '-' . $month . '-' . $day);
     }
 }
