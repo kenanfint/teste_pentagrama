@@ -18,7 +18,7 @@ cp .env.example .env
 ```
 
 
-Atualize as variáveis de ambiente do arquivo .env
+Entre no projeto e atualize as variáveis de ambiente do arquivo .env (muito importante)
 ```dosini
 APP_NAME=teste_pentagrama
 APP_URL=http://localhost:8989
@@ -35,8 +35,6 @@ QUEUE_CONNECTION=redis
 SESSION_DRIVER=redis
 
 REDIS_HOST=redis
-REDIS_PASSWORD=null
-REDIS_PORT=6379
 ```
 
 
