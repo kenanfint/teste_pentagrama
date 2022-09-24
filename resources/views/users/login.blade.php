@@ -80,13 +80,6 @@
                         <label for="floatingPassword">Senha</label>
                       </div>
       
-                      <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                        <label class="form-check-label" for="rememberPasswordCheck">
-                          Lembrar senha
-                        </label>
-                      </div>
-      
                       <div class="d-grid">
                         <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Entrar</button>
                         <div class="text-center">
@@ -96,7 +89,7 @@
                     </form>
                     <div class="d-grid pt-5">
                       <div class="text-center">
-                        <a class="small" href="{{ route('users.register') }}">Criar uma conta</a>
+                        <a class="small" href="{{ route('users.register') }}">Não tem uma conta? Crie aqui!</a>
                       </div>
                     </div>
                   </div>
