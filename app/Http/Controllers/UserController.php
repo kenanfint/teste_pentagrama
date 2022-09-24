@@ -136,9 +136,9 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, true)) {
-            $user = User::where('email', $credentials['email'])->get();
+            User::where('email', $credentials['email'])->get();
 
-            return redirect()->route('address.index');
+            return redirect()->route('cities.index');
         }else {
             return redirect()->back()->with('danger', 'E-mail ou senha inválida');
         }
