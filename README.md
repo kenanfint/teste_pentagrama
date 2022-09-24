@@ -20,7 +20,6 @@ cp .env.example .env
 
 Entre no projeto e atualize as variáveis de ambiente do arquivo .env (muito importante)
 ```dosini
-APP_NAME=teste_pentagrama
 APP_URL=http://localhost:8989
 
 DB_CONNECTION=mysql
