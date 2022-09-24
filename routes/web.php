@@ -19,8 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, 'index'])->name('users.index');
 
+Route::get('/register', [UserController::class, 'register'])->name('users.register');
+
+Route::post('users/store', [UserController::class, 'store'])->name('users.store');
+
 Route::post('/auth', [UserController::class, 'auth'])->name('users.auth');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/address', [AddressController::class, 'index'])->name('address.index');  
+    Route::get('/address', [AddressController::class, 'index'])->name('address.index');
+    Route::get('/address/store', [AddressController::class, 'store'])->name('address.store');
 });
