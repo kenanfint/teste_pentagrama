@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
-    AddressController,
+    CityController,
     UserController
 };
 use Illuminate\Support\Facades\Route;
@@ -26,6 +26,8 @@ Route::post('users/store', [UserController::class, 'store'])->name('users.store'
 Route::post('/auth', [UserController::class, 'auth'])->name('users.auth');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/address', [AddressController::class, 'index'])->name('address.index');
-    Route::get('/address/store', [AddressController::class, 'store'])->name('address.store');
+    Route::get('/city', [CityController::class, 'index'])->name('cities.index');
+    Route::get('/city/store', [CityController::class, 'store'])->name('cities.store');
+
+    Route::post('/city/filter', [CityController::class,'validateFilterType'])->name('cities.filter');
 });
