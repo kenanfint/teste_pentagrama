@@ -37,7 +37,7 @@ Registrar-se
               <form action="{{ route('users.store') }}" method="post">
                 @csrf
                 <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingInput" name="username">
+                  <input type="text" class="form-control" id="floatingInput" name="name">
                   <label for="floatingInput">Nome</label>
                 </div>
 

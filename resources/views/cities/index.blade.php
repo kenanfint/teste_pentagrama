@@ -1,7 +1,7 @@
 @extends('layouts.cities')
 
 @section('title')
-Cidades
+Relatório de Cidades
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@ Cidades
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Gerenciar <b>Cidades</b></h2>
+						<h2>Relatório de<b>Cidades</b></h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="#addCity" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Cidade</span></a>

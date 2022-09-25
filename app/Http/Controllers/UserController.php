@@ -41,11 +41,11 @@ class UserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $this->validate($request, [
-            'username' => 'required',
+            'name' => 'required',
             'email' => 'required|unique:users',
             'password' => 'required'
         ], [
-            'username.required' => 'O Nome é obrigatório',
+            'name.required' => 'O Nome é obrigatório',
             'email.required' => 'O E-mail é obrigatório',
             'email.unique' => 'O E-mail em uso',
             'password.required' => 'A Senha é obrigatória',
@@ -55,7 +55,7 @@ class UserController extends Controller
             $data = $request->all();
 
             $user = [
-                'name' => $data['username'],
+                'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ];
