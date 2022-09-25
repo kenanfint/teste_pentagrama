@@ -8,16 +8,6 @@ Relatório de Cidades
 
 <div class="container-xl">
 	<div class="mt-4">
-		@if ($errors->any())
-		<div class="alert alert-danger">
-			<ul>
-				@foreach ($errors->all() as $error)
-				<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-		</div>
-		@endif
-
 		@if(session('danger'))
 		<div class="alert alert-danger">
 			{{ session('danger') }}
@@ -25,7 +15,7 @@ Relatório de Cidades
 		@endif
 
 		@if(session('status'))
-		<div class="alert alert-danger">
+		<div class="alert alert-success">
 			{{ session('status') }}
 		</div>
 		@endif
@@ -34,7 +24,7 @@ Relatório de Cidades
 		<form action="{{ route('cities.filter') }}" class="d-flex justify-content-center pb-2" method="post">
 			@csrf
 			<input type="text" class="form-control w-100 mr-5" placeholder="Digite o nome da cidade" name="city_name">
-			<input type="text" maxlength="10" minlength="10" class='js-date form-control w-100 mr-5' name="foundation_date" value="" placeholder="Insira a data">
+			<input type="text" maxlength="10" minlength="10" class='js-date form-control w-100 mr-5' name="foundation_date" value="" placeholder="Digite a data de fundação">
 			<input type="text" class="form-control w-100 mr-5" placeholder="Digite o nome do bairro" name="district">
 			<button onClick="submit" class="btn btn-primary ml-1">filtrar</button>
 		</form>

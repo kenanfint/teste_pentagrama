@@ -70,14 +70,29 @@ class UserControllerTest extends TestCase
     {
         //prepare
         $searchPayload = [
-            'city_name' => 'Salvador'
+            'city_name' => 'São Paulo'
         ];
 
         //act
         $response = $this->post('/cities/filter', $searchPayload);
 
         //assert
-        $response->assertSee('São Paulo', false);
+        $response->assertSee($searchPayload['city_name']);
+        $response->assertSuccessful();
+    }
+
+    public function test_user_can_filter_cities_by_district()
+    {
+        //prepare
+        $searchPayload = [
+            'district' => 'Centro'
+        ];
+
+        //act
+        $response = $this->post('/cities/filter', $searchPayload);
+
+        //assert
+        $response->assertSee($searchPayload['district']);
         $response->assertSuccessful();
     }
 }
