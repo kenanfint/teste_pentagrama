@@ -94,4 +94,11 @@ class UserController extends Controller
             return redirect()->back()->with('danger', 'E-mail ou senha inválida');
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return view('users.login');
+    }
 }

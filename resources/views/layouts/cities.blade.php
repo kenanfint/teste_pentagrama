@@ -231,11 +231,35 @@
         .modal form label {
             font-weight: normal;
         }
+
+        .navbarBackground {
+            background-color: #566787;
+        }
     </style>
 </head>
 
 <body>
     <div class="app">
+        <nav class="navbar navbar-expand-lg navbar-dark navbarBackground">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{route('cities.index')}}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+
+                <span class="navbar-text mr-3 mb-1" id="username-topbar">
+                </span>
+
+                <a class="navbar-text" href="{{route('users.logout')}}">
+                    Sair
+                </a>
+            </div>
+        </nav>
+
         @yield('content')
     </div>
 
