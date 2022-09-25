@@ -1,8 +1,9 @@
+<h1 align="center" class="line-1 anim-typewriter">Teste Prático Pentagrama</h1>
 
-# Teste Prático Pentagrama
+
+<h2 id="built_with">📝 Como rodar o projeto localmente:</h2>
 
 
-### Passo a passo
 Clone o repositório:
 ```sh
 git clone https://github.com/kenan455/teste_pentagrama.git
@@ -74,6 +75,21 @@ php artisan db:seed
 
 Acesse o projeto na url abaixo:
 APP_URL=http://localhost:8989
+
+# Preview
+
+<img src="https://i.imgur.com/szlqyj2.png" alt="login">
+
+<img src="https://i.imgur.com/5VnKpCj.png" alt="signup">
+
+<img src="https://i.imgur.com/hGmIHeR.png" alt="main-table">
+
+<img src="https://i.imgur.com/WIbCUfD.png" alt="create-table">
+
+<h2 id="built_with">👷‍♂️ Ferramentas utilizadas</h2>
+
+-  <img width="30" height="30" src="https://laravel.com/img/logomark.min.svg"/> Laravel;
+-  <img width="30" height="30" src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png"/> Bootstrap;
 
 
 <h2 id="the_challenge"> 🌋 O teste</h2>
