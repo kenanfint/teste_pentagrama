@@ -92,7 +92,7 @@ class CityController extends Controller
         if ($day <= 31 && $month <= 12) {
             return ($year . '-' . $month . '-' . $day);
         } else {
-            abort(redirect()->route('cities.index')->with('session')->with('danger', 'Não foi possível cadastrar cidade, pois a Data de Fundação inválida'));
+            abort(redirect()->route('cities.index')->with('session')->with('danger', 'Não foi possível cadastrar cidade, a data de fundação é inválida'));
         }
     }
 }
