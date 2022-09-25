@@ -4,25 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\District;
-use Illuminate\Database\Eloquent\Builder;
+use App\Services\FilterService;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class CityController extends Controller
 {
     private $objCity;
+    private $pagination;
 
     public function __construct()
     {
         $this->objCity = new City();
+        $this->pagination = $this->objCity->getPagination();
     }
 
-    public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index(): View
     {
-        $cities = $this->objCity->paginate(5);
+        $cities = $this->objCity->paginate($this->pagination);
         return view('cities.index', compact('cities'));
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
     {
         $data = $request->all();
 
@@ -32,39 +47,36 @@ class CityController extends Controller
         $city->foundation_date = $data['foundation_date'];
         $city->save();
 
-        $district = new District();
-        $district->name = $data['district_name'];
-        $district->city_id = $city->id;
-        $district->save();
+        $this->storeDistrict($city->id, $data['district_name']);
 
         return redirect()->route('cities.index');
     }
 
-    public function validateFilterType(Request $request)
+    /**
+     * Store a newly created district in storage,
+     * with the foreign key "city_id"
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Void
+     */
+    public function storeDistrict(int $cityId, string $districtName): Void
     {
-        $data = $request->all();
+        $district = new District();
+        $district->name = $districtName;
+        $district->city_id = $cityId;
+        $district->save();
+    }
 
-        if ($data['city_name'] != null && $data['foundation_date'] != null && $data['district'] != null) {
-            //filter by ALL conditions
-            $cities = $this->objCity->filterAllConditions($request, $data);
-        } elseif ($data['city_name'] != null && $data['foundation_date']) {
-            //filter by city name and foundation date
-            $cities = $this->objCity->filterByCityAndFoundationDate($request, $data);
-        } elseif ($data['city_name'] != null && $data['district'] != null) {
-            //filter by city name and district
-            $cities = $this->objCity->filterByNameAndDistrict($request, $data);
-        } elseif ($data['foundation_date'] != null && $data['district'] != null) {
-            //filter by foundation date and district
-            $cities = $this->objCity->filterByFoundationDateAndDistrict($request, $data);
-        } elseif ($data['city_name'] != null) {
-            //filter JUST by city name
-            $cities = $this->objCity->filterByCityName($request, $data);
-        } elseif ($data['foundation_date'] != null) {
-            //filter JUST by foundation date
-            $cities = $this->objCity->filterByFoundationDate($request, $data);
-        } elseif ($data['district'] != null) {
-            $cities = $this->objCity->filterByDistrict($request, $data);
-        }
+    /**
+     * Filter cities.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function filter(Request $request): View
+    {
+        $filter = new FilterService();
+        $cities = $filter->validateAndFilterFilledInputs($request);
 
         return view('cities.index', compact('cities'));
     }
