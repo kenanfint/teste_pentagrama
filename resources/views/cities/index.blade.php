@@ -7,11 +7,34 @@ Relatório de Cidades
 @section('content')
 
 <div class="container-xl">
+	<div class="mt-4">
+		@if ($errors->any())
+		<div class="alert alert-danger">
+			<ul>
+				@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+		@endif
+
+		@if(session('danger'))
+		<div class="alert alert-danger">
+			{{ session('danger') }}
+		</div>
+		@endif
+
+		@if(session('status'))
+		<div class="alert alert-danger">
+			{{ session('status') }}
+		</div>
+		@endif
+	</div>
 	<div class="table-responsive">
 		<form action="{{ route('cities.filter') }}" class="d-flex justify-content-center pb-2" method="post">
 			@csrf
 			<input type="text" class="form-control w-100 mr-5" placeholder="Digite o nome da cidade" name="city_name">
-			<input type="text" maxlength="10" class='js-date form-control w-100 mr-5' name="foundation_date" value="" placeholder="Insira a data">
+			<input type="text" maxlength="10" minlength="10" class='js-date form-control w-100 mr-5' name="foundation_date" value="" placeholder="Insira a data">
 			<input type="text" class="form-control w-100 mr-5" placeholder="Digite o nome do bairro" name="district">
 			<button onClick="submit" class="btn btn-primary ml-1">filtrar</button>
 		</form>
@@ -41,12 +64,12 @@ Relatório de Cidades
 					@foreach ($cities as $city)
 					<tr>
 						<td></td>
-						<td>{{$city->name}}</td>
-						<td>{{$city->state}}</td>
+						<td style="text-transform:capitalize">{{$city->name}}</td>
+						<td style="text-transform:uppercase">{{$city->state}}</td>
 						<td>{{ date('d/m/Y', strtotime($city->foundation_date)) }}</td>
 
 						@if(!empty($city->district->name))
-						<td>{{$city->district->name}}</td>
+						<td style="text-transform:capitalize">{{$city->district->name}}</td>
 						@else
 						<td></td>
 						@endif
@@ -78,15 +101,15 @@ Relatório de Cidades
 				<div class="modal-body">
 					<div class="form-group">
 						<label>Cidade</label>
-						<input type="text" style="text-transform:capitalize" class="form-control" name="city_name" placeholder="Ex: São Paulo" required>
+						<input type="text" class="form-control" name="city_name" placeholder="Ex: São Paulo" required>
 					</div>
 					<div class="form-group">
 						<label>Estado</label>
-						<input type="text" maxlength="2" style="text-transform:uppercase" class="form-control" name="state_name" placeholder="Ex: SP" required>
+						<input type="text" maxlength="2" class="form-control" name="state_name" placeholder="Ex: SP" required>
 					</div>
 					<div class="form-group">
-						<label for="date">Data de fundação</label>
-						<input type="date" class='form-control' name="foundation_date" value="" placeholder="insira a data" required>
+						<label for="text">Data de fundação</label>
+						<input type="text" maxlength="10" minlength="10" class='js-date form-control' name="foundation_date" value="" placeholder="insira a data" required>
 					</div>
 					<div class="form-group">
 						<label>Bairro</label>

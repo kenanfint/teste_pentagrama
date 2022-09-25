@@ -15,6 +15,14 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+
+    <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
+    </script>
     <style>
         body {
             color: #566787;
@@ -265,6 +273,7 @@
 
     <script type="text/javascript">
         var inputSearch = document.querySelectorAll('.js-date')[0];
+        var inputFoundationDate = document.querySelectorAll('.js-date')[1];
 
         var dateInputMask = function dateInputMask(elm) {
             elm.addEventListener('keypress', function(e) {
@@ -289,6 +298,7 @@
         };
 
         dateInputMask(inputSearch);
+        dateInputMask(inputFoundationDate);
     </script>
 </body>
 

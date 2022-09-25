@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\District;
-use App\Services\FilterService;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Services\FilterService;
 use Illuminate\Http\RedirectResponse;
 
 class CityController extends Controller
@@ -44,12 +44,12 @@ class CityController extends Controller
         $city = new City();
         $city->name = $data['city_name'];
         $city->state = $data['state_name'];
-        $city->foundation_date = $data['foundation_date'];
+        $city->foundation_date = $this->formatDate($data['foundation_date']);
         $city->save();
 
         $this->storeDistrict($city->id, $data['district_name']);
 
-        return redirect()->route('cities.index');
+        return redirect()->route('cities.index')->with('status', 'Cidade cadastrada com sucesso.');
     }
 
     /**
@@ -79,5 +79,20 @@ class CityController extends Controller
         $cities = $filter->validateAndFilterFilledInputs($request);
 
         return view('cities.index', compact('cities'));
+    }
+
+    public function formatDate($date)
+    {
+        $fullDate = explode('/', $date);
+
+        $day = $fullDate[0];
+        $month   = $fullDate[1];
+        $year  = $fullDate[2];
+
+        if ($day <= 31 && $month <= 12) {
+            return ($year . '-' . $month . '-' . $day);
+        } else {
+            abort(redirect()->route('cities.index')->with('session')->with('status', 'Não foi possível cadastrar cidade, pois a Data de Fundação inválida'));
+        }
     }
 }
