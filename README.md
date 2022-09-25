@@ -73,8 +73,12 @@ php artisan db:seed
 ```
 
 
-Acesse o projeto na url abaixo:
+Acesse o projeto na url abaixo:</br></br>
 APP_URL=http://localhost:8989
+
+# Testes
+
+<img src="https://i.imgur.com/I9qbvya.png"/>
 
 # Preview
 
@@ -90,7 +94,6 @@ APP_URL=http://localhost:8989
 
 -  <img width="30" height="30" src="https://laravel.com/img/logomark.min.svg"/> Laravel;
 -  <img width="30" height="30" src="https://cdn-icons-png.flaticon.com/512/5968/5968672.png"/> Bootstrap;
-
 
 <h2 id="the_challenge"> 🌋 O teste</h2>
 
