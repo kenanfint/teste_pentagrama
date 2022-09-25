@@ -14,10 +14,13 @@ class District extends Model
         'city_id',
     ];
 
-
+    /**
+     * Relationship: district belongs to city.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function city()
     {
         return $this->belongsTo(City::class);
     }
-    
 }
