@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class City extends Model
 {
@@ -18,87 +19,28 @@ class City extends Model
 
     use HasFactory;
 
-    public function district()
+    /**
+     * Relationship: city has one district.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function district(): HasOne
     {
         return $this->hasOne(District::class);
     }
 
-    public function filterAllConditions(Request $request, $data)
+    /**
+     * Global pagination of cities 
+     */
+    private $pagination = 4;
+
+    /**
+     * Return the global pagination of cities,
+     * 
+     * @return int
+     */
+    public function getPagination(): Int
     {
-        $formatteDate = $this->dateFormater($request->foundation_date);
-
-        $cities = City::where("name", "LIKE", "%{$request->city_name}%")
-            ->whereHas('district', function (Builder $query) use ($data) {
-                $query->Where('name', 'LIKE', $data['district'] . "%");
-            })
-            ->where("foundation_date", "LIKE", "%{$formatteDate}%")->paginate(5);
-
-        return $cities;
-    }
-
-    public function filterByCityAndFoundationDate(Request $request)
-    {
-        $formatteDate = $this->dateFormater($request->foundation_date);
-        
-        $cities = City::where("name", "LIKE", "%{$request->city_name}%")
-            ->where("foundation_date", "LIKE", "%{$formatteDate}%")->paginate(5);
-
-        return $cities;
-    }
-
-    public function filterByNameAndDistrict(Request $request, $data)
-    {
-        $cities = City::where("name", "LIKE", "%{$request->city_name}%")
-            ->whereHas('district', function (Builder $query) use ($data) {
-                $query->Where('name', 'LIKE', $data['district'] . "%");
-            })->paginate(5);
-
-        return $cities;
-    }
-
-    public function filterByFoundationDateAndDistrict(Request $request, $data)
-    {
-        $formatteDate = $this->dateFormater($request->foundation_date);
-
-        $cities = City::where("foundation_date", "LIKE", "%{$formatteDate}%")
-            ->whereHas('district', function (Builder $query) use ($data) {
-                $query->Where('name', 'LIKE', $data['district'] . "%");
-            })->paginate(5);
-
-        return $cities;
-    }
-
-    public function filterByCityName(Request $request)
-    {
-        $cities = City::where("name", "LIKE", "%{$request->city_name}%")->paginate(5);
-
-        return $cities;
-    }
-
-    public function filterByFoundationDate(Request $request)
-    {
-        $formatteDate = $this->dateFormater($request->foundation_date);
-        $cities = City::where("foundation_date", "LIKE", "%{$formatteDate}%")->paginate(5);
-
-        return $cities;
-    }
-
-    public function filterByDistrict($data)
-    {
-        $cities = City::whereHas('district', function (Builder $query) use ($data) {
-            $query->Where('name', 'LIKE', $data['district'] . "%");
-        })->paginate(5);
-
-        return $cities;
-    }
-
-    public function dateFormater($date)
-    {
-        $orderdate = explode('/', $date);
-        $day = $orderdate[0];
-        $month   = $orderdate[1];
-        $year  = $orderdate[2];
-
-        return ($year . '-' . $month . '-' . $day);
+        return $this->pagination;
     }
 }
