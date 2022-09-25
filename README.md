@@ -63,7 +63,7 @@ php artisan key:generate
 
 Adicione migrations no banco:
 ```sh
-php artisan migrate --seed
+php artisan migrate
 ```
 
 Faça o seed do banco:
