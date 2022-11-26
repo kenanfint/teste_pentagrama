@@ -1,4 +1,4 @@
-<h1 align="center" class="line-1 anim-typewriter">Teste Prático Pentagrama</h1>
+<h1 align="center" class="line-1 anim-typewriter">Cantina SENAI</h1> 
 
 
 <h2 id="built_with">📝 Como rodar o projeto localmente:</h2>
